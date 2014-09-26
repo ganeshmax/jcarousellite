@@ -1,7 +1,6 @@
 (function($) {                                          // Compliant with jquery.noConflict()
     $.jCarouselLite = {
-        version: '1.1-alpha',
-        curr: 0
+        version: '1.1-alpha'
     };
 
     $.fn.jCarouselLite = function(options) {
@@ -14,7 +13,7 @@
                 animCss, sizeCss,
                 div = $(this), ul, initialLi, li,
                 liSize, ulSize, divSize,
-                numVisible, initialItemLength, itemLength, calculatedTo;
+                numVisible, initialItemLength, itemLength, calculatedTo, autoTimeout;
 
             initVariables();                    // Set the above variables after initial calculations
             initStyles();                       // Set the appropriate styles for the carousel div, ul and li
@@ -23,6 +22,7 @@
 
             function go(to) {
                 if(!running) {
+                    clearTimeout(autoTimeout);  // Prevents multiple clicks while auto-scrolling - edge case
                     calculatedTo = to;
 
                     if(options.beforeStart) {   // Call the beforeStart() callback
@@ -65,7 +65,9 @@
                 ul = div.find(">ul");
                 initialLi = ul.find(">li");
                 initialItemLength = initialLi.size();
-                numVisible = options.visible;
+
+                // To avoid a scenario where number of items is just 1 and visible is 3 for example.
+                numVisible = initialItemLength < options.visible ? initialItemLength : options.visible;
 
                 if(options.circular) {
                     var $lastItemSet = initialLi.slice(initialItemLength-numVisible).clone();
@@ -87,7 +89,7 @@
 
                 li.css({
                     overflow: "hidden",
-                    float: options.vertical ? "none" : "left"
+                    "float": options.vertical ? "none" : "left" // Some minification tools fail if "" is not used
                 });
 
                 ul.css({
@@ -108,9 +110,11 @@
 
             function initSizes() {
 
-                liSize = options.vertical ? height(li) : width(li);     // Full li size(incl margin)-Used for animation
-                ulSize = liSize * itemLength;                           // size of full ul(total length, not just for the visible items)
-                divSize = liSize * numVisible;                          // size of entire div(total length for just the visible items)
+                liSize = options.vertical ?         // Full li size(incl margin)-Used for animation and to set ulSize
+                    li.outerHeight(true) :
+                    li.outerWidth(true);
+                ulSize = liSize * itemLength;       // size of full ul(total length, not just for the visible items)
+                divSize = liSize * numVisible;      // size of entire div(total length for just the visible items)
 
                 li.css({
                     width: li.width(),
@@ -140,7 +144,7 @@
                 if(options.btnGo) {
                     $.each(options.btnGo, function(i, val) {
                         $(val).click(function() {
-                            return go(options.circular ? options.visible + i : i);
+                            return go(options.circular ? numVisible + i : i);
                         });
                     });
                 }
@@ -159,7 +163,7 @@
             }
 
             function setupAutoScroll() {
-                setTimeout(function() {
+                autoTimeout = setTimeout(function() {
                     go(calculatedTo + options.scroll);
                 }, options.auto);
             }
@@ -233,16 +237,6 @@
             }
         });
     };
-
-    function css(el, prop) {
-        return parseInt($.css(el[0], prop)) || 0;
-    }
-    function width(el) {
-        return  el[0].offsetWidth + css(el, 'marginLeft') + css(el, 'marginRight');
-    }
-    function height(el) {
-        return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
-    }
 
     $.fn.jCarouselLite.options = {
         btnPrev: null,              // CSS Selector for the previous button

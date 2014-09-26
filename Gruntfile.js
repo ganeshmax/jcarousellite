@@ -22,7 +22,10 @@ module.exports = function(grunt) {
             },
             options: {
                 preserveComments: false,
-                banner: '<%= meta.banner %>'
+                banner: '<%= meta.banner %>',
+                compress: {
+                    drop_console: true
+                }
             }
         }
 

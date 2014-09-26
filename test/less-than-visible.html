@@ -1,8 +1,9 @@
 <!doctype html>
-<!--thanks for your great nice script.-->
-<!--does this plugin work with jquery 1.6.x. i am using jQuery 1.6.2 for my website.-->
-<!--It seems this plug-in is not working properly in chrome. I set the carousel to vertical and circular auto scroll. When it first loads in chrome, only first div is scrolling and then freezes.-->
-<!--I have to do mouse over to bring it back to action and then it is working as expected. can you resolve this issue?        -->
+
+<!--It looks like there’s an issue if the number of images in the carousel is less than the number set by visible. For example if I have:-->
+<!--visible: 5-->
+<!--and only put 2 images in, then it appears that the carousel is broken. It will only show one image in the carousel. Is there a way around this or any kind of fix?-->
+
 <html>
 <head>
     <link href="style.css" rel="stylesheet">
@@ -18,8 +19,7 @@
 
 <div id="jCarouselLiteDemo">
     <p>
-        Test: vertical, circular and auto combination. Reported by user on website<br>
-        Test: auto interval not reset when next/prev buttons are clicked
+        visible: 5, but only 3 elements present
     </p>
 
     <div class="carousel default">
@@ -29,13 +29,6 @@
                 <li><img src="image/0.jpg" alt="" width="150" height="118"></li>
                 <li><img src="image/1.jpg" alt="" width="150" height="118"></li>
                 <li><img src="image/2.jpg" alt="" width="150" height="118"></li>
-
-                <li><img src="image/3.jpg" alt="" width="150" height="118"></li>
-                <li><img src="image/4.jpg" alt="" width="150" height="118"></li>
-                <li><img src="image/5.jpg" alt="" width="150" height="118"></li>
-
-                <li><img src="image/6.jpg" alt="" width="150" height="118"></li>
-                <li><img src="image/7.jpg" alt="" width="150" height="118"></li>
             </ul>
         </div>
         <button class="next">>></button>
@@ -46,12 +39,9 @@
         $(".default .jCarouselLite").jCarouselLite({
             btnNext: ".default .next",
             btnPrev: ".default .prev",
-            vertical: true,
-            circular: true,
-            auto: 2000,
             start: 0,
-            scroll: 1,
-            speed: 2000
+            visible: 5,
+            scroll: 2
         });
     </script>
 
