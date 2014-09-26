@@ -1,4 +1,8 @@
 <!doctype html>
+<!--thanks for your great nice script.-->
+<!--does this plugin work with jquery 1.6.x. i am using jQuery 1.6.2 for my website.-->
+<!--It seems this plug-in is not working properly in chrome. I set the carousel to vertical and circular auto scroll. When it first loads in chrome, only first div is scrolling and then freezes.-->
+<!--I have to do mouse over to bring it back to action and then it is working as expected. can you resolve this issue?        -->
 <html>
 <head>
     <link href="style.css" rel="stylesheet">
@@ -42,9 +46,12 @@
         $(".default .jCarouselLite").jCarouselLite({
             btnNext: ".default .next",
             btnPrev: ".default .prev",
+            vertical: true,
+            circular: true,
+            auto: 2000,
             start: 0,
-            scroll: 3,
-            circular: false
+            scroll: 1,
+            speed: 2000
         });
     </script>
 

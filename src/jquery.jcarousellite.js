@@ -35,7 +35,20 @@
                         adjustOobForNonCircular(to);
                     }                           // If neither overrides "calculatedTo", we are not in edge cases.
 
-                    animateToPosition();        // Animate carousel item to position based on calculated values.
+                    animateToPosition({         // Animate carousel item to position based on calculated values.
+                        start: function() {
+                            running = true;
+                        },
+                        done: function() {
+                            if(options.afterEnd) {
+                                options.afterEnd.call(this, visibleItems());
+                            }
+                            if(options.auto) {
+                                setupAutoScroll();
+                            }
+                            running = false;
+                        }
+                    });
 
                     if(!options.circular) {     // Enabling / Disabling buttons is applicable in non-circular mode only.
                         disableOrEnableButtons();
@@ -141,10 +154,14 @@
                 }
 
                 if(options.auto) {
-                    setInterval(function() {
-                        go(calculatedTo + options.scroll);
-                    }, options.auto + options.speed);
+                    setupAutoScroll();
                 }
+            }
+
+            function setupAutoScroll() {
+                setTimeout(function() {
+                    go(calculatedTo + options.scroll);
+                }, options.auto);
             }
 
             function visibleItems() {
@@ -200,23 +217,18 @@
                 ).addClass("disabled");
             }
 
-            function animateToPosition() {
+            function animateToPosition(animationOptions) {
                 running = true;
 
                 ul.animate(
                     animCss == "left" ?
-                    { left: -(calculatedTo*liSize) } :
-                    { top: -(calculatedTo*liSize) },
+                        { left: -(calculatedTo*liSize) } :
+                        { top: -(calculatedTo*liSize) },
 
-                    options.speed,
-                    options.easing,
-
-                    function() {
-                        if(options.afterEnd) {
-                            options.afterEnd.call(this, visibleItems());
-                        }
-                        running = false;
-                    }
+                    $.extend({
+                        duration: options.speed,
+                        easing: options.easing
+                    }, animationOptions)
                 );
             }
         });
