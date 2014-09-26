@@ -23,31 +23,22 @@
 
             function go(to) {
                 if(!running) {
-
                     calculatedTo = to;
 
-                    // Call the beforeStart() callback
-                    if(options.beforeStart) {
+                    if(options.beforeStart) {   // Call the beforeStart() callback
                         options.beforeStart.call(this, visibleItems());
                     }
 
-                    // If circular, and we are in first or last item, then goto the other end
-                    if(options.circular) {
-                        adjustPositionWhenOutOfBounds(to);
-                    }
+                    if(options.circular) {      // If circular, and "to" is going OOB, adjust it
+                        adjustOobForCircular(to);
+                    } else {                    // If non-circular and "to" is going OOB, adjust it.
+                        adjustOobForNonCircular(to);
+                    }                           // If neither overrides "calculatedTo", we are not in edge cases.
 
-                    // If non-circular and to points to first or last, we just return.
-                    else {
-                        if(to < 0 || to > itemLength - numVisible) {
-                            return false;
-                        }
-                    } // If neither overrides it, the curr will still be "to" and we can proceed.
+                    animateToPosition();        // Animate carousel item to position based on calculated values.
 
-                    animateToPosition();
-
-                    // Disable buttons when the carousel reaches the last/first, and enable when not
-                    if(!options.circular) {
-                        disableButtonsIfNecessary();
+                    if(!options.circular) {     // Enabling / Disabling buttons is applicable in non-circular mode only.
+                        disableOrEnableButtons();
                     }
 
                 }
@@ -58,8 +49,8 @@
                 running = false;
                 animCss = options.vertical ? "top" : "left";
                 sizeCss = options.vertical ? "height" : "width";
-                ul = $("ul", div);
-                initialLi = $("li", ul);
+                ul = div.find(">ul");
+                initialLi = ul.find(">li");
                 initialItemLength = initialLi.size();
                 numVisible = options.visible;
 
@@ -160,9 +151,7 @@
                 return li.slice(calculatedTo).slice(0,numVisible);
             }
 
-            function adjustPositionWhenOutOfBounds(to) {
-
-                console.log("To: " + to);
+            function adjustOobForCircular(to) {
                 var newPosition;
 
                 // If first, then goto last
@@ -184,7 +173,24 @@
                 }
             }
 
-            function disableButtonsIfNecessary() {
+            function adjustOobForNonCircular(to) {
+                // If user clicks "prev" and tries to go before the first element, reset it to first element.
+                if(to < 0) {
+                    calculatedTo = 0;
+                }
+                // If "to" is greater than the max index that we can use to show another set of elements
+                // it means that we will have to reset "to" to a smallest possible index that can show it
+                else if(to > itemLength - numVisible) {
+                    calculatedTo = itemLength - numVisible;
+                }
+
+                console.log("Item Length: " + itemLength + "; " +
+                    "To: " + to + "; " +
+                    "CalculatedTo: " + calculatedTo + "; " +
+                    "Num Visible: " + numVisible);
+            }
+
+            function disableOrEnableButtons() {
                 $(options.btnPrev + "," + options.btnNext).removeClass("disabled");
                 $( (calculatedTo-options.scroll<0 && options.btnPrev)
                     ||
