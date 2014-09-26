@@ -2,14 +2,27 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        meta: {
+            banner: '/*!<%= "\\n" %>' +
+                ' * <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
+                '<%= grunt.template.today("yyyy-mm-dd")  + "\\n" %>' +
+                '<%= pkg.homepage ? " * " + pkg.homepage + "\\n" : "" %>' +
+                ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %><%= "\\n" %>' +
+                ' * Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %>' +
+                ' (<%= _.pluck(pkg.licenses, "url").join(", ") %>)<%= "\\n" %>' +
+                '*/' +
+                '<%= "\\n\\n" %>'
+        },
+
         uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-            },
-            dist: {
+            all: {
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                    'src/jquery.jcarousellite.min.js': ['src/jquery.jcarousellite.js']
                 }
+            },
+            options: {
+                preserveComments: false,
+                banner: '<%= meta.banner %>'
             }
         }
 

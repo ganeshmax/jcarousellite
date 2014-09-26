@@ -2,7 +2,7 @@
     "name": "jcarousellite",
     "title": "jCarouselLite",
     "description": "A light-weight jQuery carousel plugin",
-    "version": "1.0.1",
+    "version": "1.1-alpha",
     "author": {
         "name": "Ganeshji Marwaha",
         "url": "http://www.gmarwaha.com/"
@@ -22,7 +22,7 @@
     "licenses": [
         {
             "type": "MIT",
-            "url": ""
+            "url": "https://github.com/ganeshmax/jcarousellite/blob/master/LICENSE"
         }
     ],
     "keywords": [
