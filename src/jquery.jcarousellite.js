@@ -106,6 +106,11 @@
                     "z-index": "2",
                     left: "0px"
                 });
+
+                // For a non-circular carousel, if the start is 0 and btnPrev is supplied, disable the prev button
+                if(!options.circular && options.btnPrev && options.start == 0) {
+                    $(options.btnPrev).addClass("disabled");
+                }
             }
 
             function initSizes() {

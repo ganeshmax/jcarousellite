@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <link href="style.css" rel="stylesheet">
+
+    <script src="../lib/jquery-1.11.1.js"></script>
+    <script src="../lib/jquery.easing-1.3.js"></script>
+    <script src="../lib/jquery.easing.compatibility.js"></script>
+    <script src="../lib/jquery.mousewheel-3.1.12.js"></script>
+    <script src="../src/jquery.jcarousellite.js"></script>
+    <!--<script src="../src/jquery.jcarousellite.min.js"></script>-->
+</head>
+<body>
+
+<div id="jCarouselLiteDemo">
+    <p>
+        Non-circular, if start is 0, set btnPrev to disabled.
+    </p>
+
+    <div class="carousel default">
+        <button class="prev"><<</button>
+        <div class="jCarouselLite">
+            <ul>
+                <li><img src="image/0.jpg" alt="" width="150" height="118"></li>
+
+                <li><img src="image/1.jpg" alt="" width="150" height="118"></li>
+                <li><img src="image/2.jpg" alt="" width="150" height="118"></li>
+                <li><img src="image/3.jpg" alt="" width="150" height="118"></li>
+                <li><img src="image/4.jpg" alt="" width="150" height="118"></li>
+
+                <li><img src="image/5.jpg" alt="" width="150" height="118"></li>
+                <li><img src="image/6.jpg" alt="" width="150" height="118"></li>
+                <li><img src="image/7.jpg" alt="" width="150" height="118"></li>
+            </ul>
+        </div>
+        <button class="next">>></button>
+        <div class="clear"></div>
+    </div>
+
+    <script type="text/javascript">
+        $(".default .jCarouselLite").jCarouselLite({
+            btnNext: ".default .next",
+            btnPrev: ".default .prev",
+            start: 0,
+            circular: false
+        });
+    </script>
+
+</body>
+
+</html>
