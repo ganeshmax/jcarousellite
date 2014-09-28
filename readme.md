@@ -17,3 +17,5 @@ Currently, I am working on a new version that adds support for a few items:
 * Calling methods on a constructed carousel like pause(), resume(), next(), previous(), go() etc.
 * Bower and NPM packages
 * Browserify and AMD dependency management
+
+Stay tuned!
