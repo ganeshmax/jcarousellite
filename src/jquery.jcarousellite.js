@@ -1,6 +1,6 @@
 (function($) {                                          // Compliant with jquery.noConflict()
     $.jCarouselLite = {
-        version: '1.1-alpha'
+        version: '1.1'
     };
 
     $.fn.jCarouselLite = function(options) {
@@ -96,7 +96,7 @@
                     margin: "0",
                     padding: "0",
                     position: "relative",
-                    "list-style-type": "none",
+                    "list-style": "none",
                     "z-index": "1"
                 });
 
@@ -121,15 +121,23 @@
                 ulSize = liSize * itemLength;       // size of full ul(total length, not just for the visible items)
                 divSize = liSize * numVisible;      // size of entire div(total length for just the visible items)
 
+                // Generally, LI's dimensions should be specified explicitly in a style-sheet
+                // But in the case of img (with width and height attr), we can derive LI's dimensions and set here
+                // May be applicable for other types of LI children if their dimensions are explicitly specified
+                // Individual LI dimensions
                 li.css({
                     width: li.width(),
                     height: li.height()
                 });
 
+                // Size of the entire UL. Including hidden and visible elements
+                // Will include LI's (width + padding + border + margin) * itemLength - Using outerwidth(true)
                 ul.css(sizeCss, ulSize+"px")
                     .css(animCss, -(calculatedTo * liSize));
 
-                div.css(sizeCss, divSize+"px");                     // Width of the DIV. length of visible images
+                // Width of the DIV. Only the width of the visible elements
+                // Will include LI's (width + padding + border + margin) * numVisible - Using outerwidth(true)
+                div.css(sizeCss, divSize+"px");
 
             }
 
@@ -231,8 +239,8 @@
 
                 ul.animate(
                     animCss == "left" ?
-                        { left: -(calculatedTo*liSize) } :
-                        { top: -(calculatedTo*liSize) },
+                    { left: -(calculatedTo*liSize) } :
+                    { top: -(calculatedTo*liSize) },
 
                     $.extend({
                         duration: options.speed,
