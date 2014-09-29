@@ -11,11 +11,10 @@ For detailed documentation visit the [Project Page](http://www.gmarwaha.com/jque
 * [Documentation](http://www.gmarwaha.com/jquery/jcarousellite/documentation.php)
 * [Change Log](http://www.gmarwaha.com/jquery/jcarousellite/change-log.php)
 
-## Work in progress:
+## What is cooking in the next version?
 
-Currently, I am working on a new version that adds support for a few items:
-* Calling methods on a constructed carousel like pause(), resume(), next(), previous(), go() etc.
-* Bower and NPM packages
-* Browserify and AMD dependency management
+* Bower and NPM support
+* Common JS (Browserify) and AMD (Require JS) support
+* Calling action methods on a constructed carousel like pause(), resume(), next(), previous(), go() etc.
 
 Stay tuned!
