@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 8) ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+    <!-- Direct Theme CSS -->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluthcodes-style-css'    href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/plugins/bluthcodes/style.css?ver=4.0'  />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-bootstrap-css'     href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/css/bootstrap.min.css?ver=4.0' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-style-css'         href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/style.css?ver=4.0' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-responsive-css'    href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/css/style-responsive.css?ver=4.0' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-fontello-css'      href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/css/fontello.css?ver=4.0' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-nivo-css'          href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/css/nivo-slider.css?ver=4.0' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-magnific-css'      href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/css/magnific-popup.css?ver=4.0' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-snippet-css'       href='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/css/jquery.snippet.min.css?ver=4.0' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' id='bluth-googlefonts-css'   href='http://fonts.googleapis.com/css?family=Merriweather%3A400%2C400italic%2C700%2C900%7CLato%3A400%2C700%2C400italic%7CLato%3A400%2C700%2C400italic%7CMerriweather%3A400%2C400italic%2C700%2C900&#038;ver=4.0' />-->
+
+    <!-- GTG Common CSS -->
+    <!--<link rel='stylesheet' type='text/css' media='all' href='http://www.gmarwaha.com/style/style-bliss-custom.css' />-->
+    <!--<link rel='stylesheet' type='text/css' media='all' href='http://www.gmarwaha.com/jquery/jcarousellite/style/style-demo.css' />-->
+
+    <link rel='stylesheet' type='text/css' href='bs-style.css' />
+
+    <style type="text/css">
+
+        #jcl-demo a.prev, #jcl-demo a.next {
+            display: block;
+            width: 26px;
+            height: 30px;
+
+            background-color: #333333;
+            color: ghostwhite;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 25px;
+
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 8px;
+
+            float: left;
+        }
+        #jcl-demo a.prev {
+            margin: 50px -5px 0 0;
+            text-indent: 7px;
+        }
+        #jcl-demo a.next {
+            margin: 50px 0 0 -5px;
+            text-indent: 10px;
+        }
+        #jcl-demo a.prev:hover, #jcl-demo a.next:hover {
+            background-color: #666666;
+        }
+
+        #jcl-demo .carousel {
+            border: 1px solid #bababa;
+            border-radius: 10px;
+            background-color: ghostwhite;
+            float: left;
+            padding-left: 10px;
+
+            /* Needed for rendering without flicker */
+            position: relative;
+            visibility: hidden;
+            left: -5000px;
+        }
+        #jcl-demo .carousel li img{
+            margin: 10px 10px 10px 0;
+        }
+        #jcl-demo .carousel li img {
+            width: 150px;
+            height: 118px;
+            vertical-align:middle;
+            border-radius: 5px;
+        }
+
+
+        #jcl-demo .carousel, #jcl-demo .carousel * {
+            box-sizing: content-box;    /* My theme uses border-box for whatever reason, I don't know. I am switching it to the standard content-box here */
+        }
+
+
+    </style>
+
+    <!-- Bliss JS Libs -->
+    <script src='http://www.gmarwaha.com/script/lib/jquery-1.11.1.js'></script>
+    <!--<script src='http://www.gmarwaha.com/blog/wp-content/themes/bliss/assets/js/bootstrap.min.js?ver=3.01'></script>-->
+    <!--<script src='http://www.gmarwaha.com/script/script.js'></script>-->
+
+    <!-- jCarouselLite related jquery plugins -->
+    <script src="http://www.gmarwaha.com/script/lib/jquery.easing-1.3.js"></script>
+    <script src="http://www.gmarwaha.com/script/lib/jquery.easing.compatibility.js"></script>
+    <script src="http://www.gmarwaha.com/script/lib/jquery.mousewheel-3.1.12.js"></script>
+
+    <!-- jCarouselLite -->
+    <script src="http://www.gmarwaha.com/jquery/jcarousellite/script/jquery.jcarousellite.js"></script>
+</head>
+<body>
+        <div id="jcl-demo" class="entry-content">
+            <div class="custom-container main">
+                <a href="#" class="prev">&lsaquo;</a>
+                <div class="carousel">
+                    <ul>
+                        <li><img src="image-temp/1.jpg"></li>
+                        <li><img src="image-temp/2.jpg"></li>
+                        <li><img src="image-temp/3.jpg"></li>
+                        <li><img src="image-temp/4.jpg"></li>
+                        <li><img src="image-temp/5.jpg"></li>
+                        <li><img src="image-temp/6.jpg"></li>
+                        <li><img src="image-temp/7.jpg"></li>
+                        <li><img src="image-temp/8.jpg"></li>
+                        <li><img src="image-temp/9.jpg"></li>
+                        <li><img src="image-temp/10.jpg"></li>
+                        <li><img src="image-temp/11.jpg"></li>
+                    </ul>
+                </div>
+                <a href="#" class="next">&rsaquo;</a>
+                <div class="clear"></div>
+            </div>
+
+            <script>
+                $(function() {
+                    $(".main .carousel").jCarouselLite({
+                        btnNext: ".main .next",
+                        btnPrev: ".main .prev",
+                        speed: 500
+                    });
+                });
+            </script>
+        </div><!-- .entry-content -->
+
+</div><!-- #content -->
+
+</body>
+</html>
+
