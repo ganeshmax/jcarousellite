@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .externalControl button.active {
+            background-color: green;
+        }
+    </style>
+
+    <script src="../lib/jquery-1.11.1.js"></script>
+    <script src="../lib/jquery.easing-1.3.js"></script>
+    <script src="../lib/jquery.easing.compatibility.js"></script>
+    <script src="../lib/jquery.mousewheel-3.1.12.js"></script>
+    <script src="../temp/jquery.jcarousellite-1.2-alpha.js"></script>
+    <!--<script src="../src/jquery.jcarousellite.min.js"></script>-->
+</head>
+<body>
+
+<div id="jcl-demo">
+    <p>
+        Test: External controls highlight
+    </p>
+
+    <div class="custom-container">
+        <div>
+            <button class="prev">&laquo;</button>
+            <button class="0">0</button>
+            <button class="1">1</button>
+            <button class="2">2</button>
+            <button class="3">3</button>
+            <button class="4">4</button>
+            <button class="next">&raquo;</button>
+        </div>
+        <div class="carousel">
+            <ul>
+                <li><img src="image/0.jpg"></li>
+
+                <li><img src="image/1.jpg"></li>
+                <li><img src="image/2.jpg"></li>
+                <li><img src="image/3.jpg"></li>
+                <li><img src="image/4.jpg"></li>
+            </ul>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    <pre>
+        $(".carousel").jCarouselLite({
+            visible: 3,
+            start: 0,
+            scroll: 1,
+            circular: true,
+            btnNext: ".externalControl .next",
+            btnPrev: ".externalControl .prev",
+            btnGo: [".externalControl .0",
+                    ".externalControl .1",
+                    ".externalControl .2",
+                    ".externalControl .3",
+                    ".externalControl .4"]
+        });
+    </pre>
+    <script>
+        $(".carousel").jCarouselLite({
+            visible: 3,
+            start: 0,
+            scroll: 1,
+            circular: true,
+            btnNext: ".externalControl .next",
+            btnPrev: ".externalControl .prev",
+            btnGo: [".externalControl .0",
+                    ".externalControl .1",
+                    ".externalControl .2",
+                    ".externalControl .3",
+                    ".externalControl .4"]
+        });
+    </script>
+
+</div>
+</body>
+
+</html>

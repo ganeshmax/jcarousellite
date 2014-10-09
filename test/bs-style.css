@@ -1,0 +1,32 @@
+/*
+Theme Name: Bliss by Bluth Company
+Theme URI: http://www.bluth.is/wordpress/bliss/
+Author: Bluth Company
+Author URI: http://bluth.is
+Description: Simplicity is Bliss
+Version: 3.01
+Tags: two-columns, theme-options, right-sidebar, custom-background, custom-menu, post-formats, threaded-comments
+License:
+License URI:
+*/
+*{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing:antialiased;
+}
+iframe{ max-width: 100%; }
+html,body{
+    height: 100%;
+}
+body{
+    font-family: "Lato",Helvetica,sans-serif;
+    font-weight: 300;
+    /*line-height: 1.75;*/
+    background: #E9F0F4;
+    overflow-x: hidden;
+    position: relative;
+    font-size: 14px;
+    left: 0;
+    width: 100%;
+}

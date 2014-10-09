@@ -12,56 +12,85 @@
     <script src="../src/jquery.jcarousellite.min.js"></script>
 </head>
 <body>
+<div id="jcl-demo">
 
-<div id="jCarouselLiteDemo">
-    <p>
-        Test: circular, one image
-    </p>
+<p>
+    Test: If a circular carousel with just one image works fine
+</p>
 
-    <div class="carousel default">
-        <button class="prev"><<</button>
-        <div class="jCarouselLite">
-            <ul>
-                <li><img src="image/0.jpg" alt="" width="150" height="118"></li>
-            </ul>
-        </div>
-        <button class="next">>></button>
-        <div class="clear"></div>
+<div class="custom-container circular">
+    <button class="prev">&laquo;</button>
+    <div class="carousel">
+        <ul>
+            <li><img src="image/0.jpg"></li>
+        </ul>
     </div>
+    <button class="next">&raquo;</button>
+    <div class="clear"></div>
+</div>
 
-    <script type="text/javascript">
-        $(".default .jCarouselLite").jCarouselLite({
-            btnNext: ".default .next",
-            btnPrev: ".default .prev",
+<pre>
+    $(function() {
+        $(".circular .carousel").jCarouselLite({
+            btnNext: ".circular .next",
+            btnPrev: ".circular .prev",
             visible: 3,
             auto: 500
-
         });
-    </script>
+    });
+</pre>
 
-    <p>
-        Test: circular, one image
-    </p>
-    <div class="carousel noncircular">
-        <button class="prev"><<</button>
-        <div class="jCarouselLite">
-            <ul>
-                <li><img src="image/0.jpg" alt="" width="150" height="118"></li>
-            </ul>
-        </div>
-        <button class="next">>></button>
-        <div class="clear"></div>
+<script type="text/javascript">
+    $(function() {
+        $(".circular .carousel").jCarouselLite({
+            btnNext: ".circular .next",
+            btnPrev: ".circular .prev",
+            visible: 3,
+            auto: 500
+        });
+    });
+</script>
+
+<p>
+    Test: If non-circular carousel with just one image works fine
+</p>
+
+<div class="custom-container non-circular">
+    <button class="prev">&laquo;</button>
+    <div class="carousel">
+        <ul>
+            <li><img src="image/0.jpg"></li>
+        </ul>
     </div>
+    <button class="next">&raquo;</button>
+    <div class="clear"></div>
+</div>
 
-    <script type="text/javascript">
-        $(".noncircular .jCarouselLite").jCarouselLite({
-            btnNext: ".default .next",
-            btnPrev: ".default .prev",
+<pre>
+    $(function() {
+        $(".non-circular .jCarouselLite").jCarouselLite({
+            btnNext: ".non-circular .next",
+            btnPrev: ".non-circular .prev",
             circular:false,
             visible: 3,
             auto: 500
         });
-    </script>
+    });
+</pre>
+
+<script type="text/javascript">
+    $(function() {
+        $(".non-circular .carousel").jCarouselLite({
+            btnNext: ".non-circular .next",
+            btnPrev: ".non-circular .prev",
+            circular:false,
+            visible: 3,
+            auto: 500
+        });
+    });
+</script>
+
+</div>
 </body>
 
 </html>

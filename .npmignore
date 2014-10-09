@@ -1,0 +1,7 @@
+/temp
+/.idea
+/node_modules
+/test
+/versions
+
+/Gruntfile.js

@@ -17,18 +17,19 @@
 </head>
 <body>
 
-<div id="jCarouselLiteDemo">
+
+<div id="jcl-demo">
     <p>
         visible: 5, but only 3 elements present
     </p>
 
-    <div class="carousel default">
+    <div class="custom-container default">
         <button class="prev"><<</button>
-        <div class="jCarouselLite">
+        <div class="carousel">
             <ul>
-                <li><img src="image/0.jpg" alt="" width="150" height="118"></li>
-                <li><img src="image/1.jpg" alt="" width="150" height="118"></li>
-                <li><img src="image/2.jpg" alt="" width="150" height="118"></li>
+                <li><img src="image-temp/1.jpg"></li>
+                <li><img src="image-temp/2.jpg"></li>
+                <li><img src="image-temp/3.jpg"></li>
             </ul>
         </div>
         <button class="next">>></button>
@@ -36,7 +37,7 @@
     </div>
 
     <script type="text/javascript">
-        $(".default .jCarouselLite").jCarouselLite({
+        $(".default .carousel").jCarouselLite({
             btnNext: ".default .next",
             btnPrev: ".default .prev",
             start: 0,

@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+
+        #jcl-demo a.prev, #jcl-demo a.next {
+            display: block;
+            width: 26px;
+            height: 30px;
+
+            background-color: #333333;
+            color: ghostwhite;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 25px;
+
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 8px;
+
+            float: left;
+        }
+            #jcl-demo a.prev {
+                margin: 50px -5px 0 0;
+                text-indent: 7px;
+            }
+            #jcl-demo a.next {
+                margin: 50px 0 0 -5px;
+                text-indent: 10px;
+            }
+            #jcl-demo a.prev:hover, #jcl-demo a.next:hover {
+                background-color: #666666;
+            }
+
+        #jcl-demo .carousel {
+            border: 1px solid #bababa;
+            border-radius: 10px;
+            background-color: ghostwhite;
+            float: left;
+            padding-left: 10px;
+
+            /* Needed for rendering without flicker */
+            position: relative;
+            visibility: hidden;
+            left: -5000px;
+        }
+            #jcl-demo .carousel li {
+                margin: 10px 10px 10px 0;
+            }
+            #jcl-demo .carousel li img {
+                width: 150px;
+                height: 118px;
+                vertical-align:middle;
+                border-radius: 5px;
+            }
+
+
+    </style>
+
+    <script src="../lib/jquery-1.11.1.js"></script>
+    <script src="../lib/jquery.easing-1.3.js"></script>
+    <script src="../lib/jquery.easing.compatibility.js"></script>
+    <script src="../lib/jquery.mousewheel-3.1.12.js"></script>
+    <script src="../temp/jquery.jcarousellite-test-styles.js"></script>
+    <!--<script src="../src/jquery.jcarousellite.min.js"></script>-->
+</head>
+<body>
+
+<div id="jcl-demo">
+
+    <p> sdhf kjsd fhsldfh slkf hlsf hsfklsdjf sdkfsdhf kjsd fhsldfh slkf hlsf hsfklsdjf sdkfsdhf kjsd fhsldfh slkf hlsf hsfklsdjf sdkfsdhf kjsd fhsldfh slkf hlsf hsfklsdjf sdkfsdhf kjsd fhsldfh slkf hlsf hsfklsdjf sdkfsdhf kjsd fhsldfh slkf hlsf hsfklsdjf sdkfsdhf kjsd fhsldfh slkf hlsf hsfklsdjf sdkf</p>
+
+    <div class="custom-container">
+        <a href="#" class="nav prev">&lsaquo;</a>
+        <div class="carousel">
+            <ul>
+                <li><img src="image-temp/1.jpg"></li>
+                <li><img src="image-temp/2.jpg"></li>
+                <li><img src="image-temp/3.jpg"></li>
+                <li><img src="image-temp/4.jpg"></li>
+
+                <li><img src="image-temp/5.jpg"></li>
+                <li><img src="image-temp/6.jpg"></li>
+
+                <!--<li><img src="image-pattern/1.png"></li>-->
+                <!--<li><img src="image-pattern/2.png"></li>-->
+                <!--<li><img src="image-pattern/3.png"></li>-->
+                <!--<li><img src="image-pattern/4.png"></li>-->
+
+                <!--<li><img src="image-pattern/5.png"></li>-->
+                <!--<li><img src="image-pattern/6.png"></li>-->
+            </ul>
+        </div>
+        <a href="#" class="nav next">&rsaquo;</a>
+        <div style="clear: both"></div>
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            $(".carousel").jCarouselLite({
+                btnNext: ".next",
+                btnPrev: ".prev"
+            });
+        });
+    </script>
+
+</div>
+</body>
+</html>

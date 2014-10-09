@@ -22,30 +22,17 @@ html>body .cEnd {
     visibility: hidden;
 }
 
-#jCarouselLiteDemo .carousel  {
+#jcl-demo .custom-container  {
     padding: 10px 0 0 0;
     margin: 0 0 20px 10px;
     position: relative;
 }
-#jCarouselLiteDemo .digg {
-    position: absolute;
-    left: 610px;
-    top: 110px;
-}
-#jCarouselLiteDemo .main {
-    margin-left: 40px;
-}
 
-#jCarouselLiteDemo .demo em {
-    color: #FF3300;
-    font-weight: bold;
-    font-size: 60%;
-    font-style: normal;
-}
-#jCarouselLiteDemo .carousel button { /*Don't remove this. we still use this for individual demos. only the front pages use images as of now*/
+#jcl-demo .custom-container button {
     float: left;
 }
-#jCarouselLiteDemo .carousel a.prev, #jCarouselLiteDemo .carousel a.next {
+
+#jcl-demo a.prev, #jcl-demo a.next {
     display: block;
     float: left;
     width: 30px;
@@ -53,20 +40,21 @@ html>body .cEnd {
     text-decoration: none;
     background: url("/image/imageNavLeft.gif") left 60px no-repeat;
 }
-#jCarouselLiteDemo .carousel a.next {
+#jcl-demo a.next {
     background: url("/image/imageNavRight.gif") right 60px no-repeat;
 }
-#jCarouselLiteDemo .carousel a.next:hover {
-    background-image: url("/image/imageNavRightHover.gif");
-}
-#jCarouselLiteDemo .carousel a.prev:hover {
-    background-image: url("/image/imageNavLeftHover.gif");
-}
-#jCarouselLiteDemo .carousel a:hover, #jCarouselLiteDemo .carousel a:active {
-    border: none;
-    outline: none;
-}
-#jCarouselLiteDemo .carousel .jCarouselLite {
+    #jcl-demo a.next:hover {
+        background-image: url("/image/imageNavRightHover.gif");
+    }
+    #jcl-demo a.prev:hover {
+        background-image: url("/image/imageNavLeftHover.gif");
+    }
+    #jcl-demo a:hover, #jcl-demo a:active {
+        border: none;
+        outline: none;
+    }
+
+#jcl-demo .carousel {
     border: 1px solid black;
     float: left;
     background-color: #dfdfdf;
@@ -76,35 +64,35 @@ html>body .cEnd {
     visibility: hidden;
     left: -5000px;
 }
-#jCarouselLiteDemo .carousel ul {
-    margin: 0;
-}
-#jCarouselLiteDemo .carousel li img,
-#jCarouselLiteDemo .carousel li p {
-    background-color: #fff;
-    width: 150px;
-    height: 118px;
-    margin: 10px;
-}
+    #jcl-demo .carousel ul {
+        margin: 0;
+    }
+        #jcl-demo .carousel li img,
+        #jcl-demo .carousel li p {
+            background-color: #fff;
+            width: 150px;
+            height: 118px;
+            margin: 10px;
+        }
 
-#jCarouselLiteDemo .widget img {
+#jcl-demo .widget img {
     cursor: pointer;
 }
-#jCarouselLiteDemo .mid {
+#jcl-demo .mid {
     margin-left: 80px;
     width: 400px;
     height: 300px;
 }
-#jCarouselLiteDemo .vertical {
+#jcl-demo .vertical {
     margin-left: 170px;
 }
-#jCarouselLiteDemo .vertical .jCarouselLite {   /* so that in IE 6, the carousel div doesnt expand to fill the space */
+#jcl-demo .vertical .carousel {   /* so that in IE 6, the carousel div doesnt expand to fill the space */
     width: 170px;
 }
-#jCarouselLiteDemo .imageSlider li img,
-#jCarouselLiteDemo .imageSlider li p,
-#jCarouselLiteDemo .imageSliderExt li img ,
-#jCarouselLiteDemo .imageSliderExt li p {
+#jcl-demo .imageSlider li img,
+#jcl-demo .imageSlider li p,
+#jcl-demo .imageSliderExt li img ,
+#jcl-demo .imageSliderExt li p {
     width: 400px;
     height: 300px;
 }
