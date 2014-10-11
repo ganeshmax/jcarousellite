@@ -1,0 +1,108 @@
+#jcl-demo .carousel {
+    border: 1px solid #bababa;
+    border-radius: 10px;
+    background-color: ghostwhite;
+    float: left;
+    padding-left: 10px;
+
+    /* Needed for rendering without flicker */
+    position: relative;
+    visibility: hidden;
+    left: -5000px;
+}
+
+    /* Styling for image based carousel content. Only width and height are mandatory */
+    #jcl-demo .carousel>ul>li>img {
+        width: 150px;
+        height: 118px;
+        vertical-align:middle;
+
+        /* optional */
+        margin: 10px 10px 10px 0;
+        border-radius: 5px;
+    }
+
+    /* Styling for text based carousel content. Only width and height are mandatory */
+    #jcl-demo .carousel>ul>li>p {
+        width: 130px;
+        height: 98px;
+
+        margin: 10px 10px 10px 0;
+        border: 1px solid #808080;
+        line-height: normal;
+        background-color: #fff;
+        padding: 10px;
+    }
+
+/* Styles for PREV and NEXT anchor buttons */
+#jcl-demo a.prev, #jcl-demo a.next {
+    display: block;
+    width: 26px;
+    height: 30px;
+    line-height: 1;
+
+    background-color: #333333;
+    color: ghostwhite;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+
+    border-radius: 8px;
+    float: left;
+}
+    #jcl-demo a.prev {
+        margin: 50px -5px 0 0;
+        text-indent: 7px;
+    }
+    #jcl-demo a.next {
+        margin: 50px 0 0 -5px;
+        text-indent: 10px;
+    }
+        #jcl-demo a.prev:hover, #jcl-demo a.next:hover {
+            background-color: #666666;
+        }
+
+/* Additional carousel styles for external controls, slider, widget, mid etc. */
+
+#jcl-demo .externalControl button,
+#jcl-demo .imageSliderExt button {
+    margin: 5px 5px 0 0;
+}
+#jcl-demo .externalControl a.next, #jcl-demo .externalControl a.prev, #jcl-demo .externalControl a.go,
+#jcl-demo .imageSliderExt a.next, #jcl-demo .imageSliderExt a.prev, #jcl-demo .imageSliderExt a.go
+{
+    margin: 0 5px 0 0;
+    padding: 7px 5px 0 5px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+#jcl-demo .widget img {
+    cursor: pointer;
+}
+#jcl-demo .mid {
+    margin-left: 50px;
+    width: 400px;
+    height: 300px;
+}
+#jcl-demo .vertical {
+    margin-left: 170px;
+}
+
+#jcl-demo .imageSlider .carousel>ul>li>img,
+#jcl-demo .imageSliderExt .carousel>ul>li>img {
+    width: 400px;
+    height: 300px;
+}
+#jcl-demo .imageSlider .carousel>ul>li>p,
+#jcl-demo .imageSliderExt .carousel>ul>li>p {
+    width: 380px;
+    height: 280px;
+}
+
+/* Other common styles */
+
+.clear {
+    clear: both;
+}
