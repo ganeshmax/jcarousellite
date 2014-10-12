@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" media="all" type="text/css" href="../demo/style/style-demo.css">
+
+    <script src="../demo/script/jquery-1.11.1.js"></script>
+    <script src="../demo/script/jquery.easing-1.3.js"></script>
+    <script src="../demo/script/jquery.mousewheel-3.1.12.js"></script>
+    <script src="../src/jquery.jcarousellite.js"></script>
+</head>
+<body>
+
+<div id="jcl-demo">
+
+
+
+    <!-- Demo 15 -->
+    <h4 id="demo15">Non Circular</h4><hr>
+
+    <p>
+        jCarouselLite carousels are circular by default. You have to explicitly disable circular behavior if you don't want them. Like this.
+    </p>
+
+    <div class="custom-container nonCircular">
+        <a href="#" class="prev">&lsaquo;</a>
+        <div class="carousel">
+            <ul>
+                <li><img src="image/1.jpg"></li>
+                <li><img src="image/2.jpg"></li>
+                <li><img src="image/3.jpg"></li>
+                <li><img src="image/4.jpg"></li>
+                <li><img src="image/5.jpg"></li>
+                <li><img src="image/6.jpg"></li>
+                <li><img src="image/7.jpg"></li>
+                <li><img src="image/8.jpg"></li>
+                <li><img src="image/9.jpg"></li>
+                <li><img src="image/10.jpg"></li>
+                <li><img src="image/11.jpg"></li>
+            </ul>
+        </div>
+        <a href="#" class="next">&rsaquo;</a>
+        <div class="clear"></div>
+    </div>
+
+<pre class="prettyprint">
+$(".nonCircular .carousel").jCarouselLite({
+    btnNext: ".nonCircular .next",
+    btnPrev: ".nonCircular .prev",
+    circular: false
+});
+</pre>
+
+    <script type="text/javascript">
+        $(function() {
+            $(".nonCircular .carousel").jCarouselLite({
+                btnNext: ".nonCircular .next",
+                btnPrev: ".nonCircular .prev",
+                start: 7,
+                circular: false
+            });
+        });
+    </script>
+
+
+</div>
+</body>
+</html>

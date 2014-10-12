@@ -51,6 +51,15 @@
     border-radius: 8px;
     float: left;
 }
+    #jcl-demo a.prev.disabled, #jcl-demo a.next.disabled,
+    #jcl-demo a.prev.disabled:hover, #jcl-demo a.next.disabled:hover {
+        background-color: #8d8d8d;
+        cursor: default;
+    }
+    #jcl-demo a.go.highlight {
+        background-color: #dedede;
+        color: #000;
+    }
     #jcl-demo a.prev {
         margin: 50px -5px 0 0;
         text-indent: 7px;

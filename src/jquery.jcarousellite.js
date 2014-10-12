@@ -1,6 +1,6 @@
 (function($) {                                          // Compliant with jquery.noConflict()
     $.jCarouselLite = {
-        version: '1.1'
+        version: '1.2.0-alpha'
     };
 
     $.fn.jCarouselLite = function(options) {
@@ -20,6 +20,13 @@
             initSizes();                        // Set appropriate sizes for the carousel div, ul and li
             attachEventHandlers();              // Attach event handlers for carousel to respond
 
+            /**
+             * Navigates the carousel to an element at "to" index
+             * In the process, it adjusts the carousel based on whether it circular or not, hightlights the go buttons,
+             * disables/enables the next/prev buttons and so on
+             * @param to
+             * @returns {boolean}
+             */
             function go(to) {
                 if(!running) {
                     clearTimeout(autoTimeout);  // Prevents multiple clicks while auto-scrolling - edge case
@@ -50,6 +57,8 @@
                         }
                     });
 
+                    highlightGoButtons();       // Highlight or Un-highlight the right external GO buttons
+
                     if(!options.circular) {     // Enabling / Disabling buttons is applicable in non-circular mode only.
                         disableOrEnableButtons();
                     }
@@ -58,6 +67,9 @@
                 return false;
             }
 
+            /**
+             * Setup the initial set of variables based on the options set by the user.
+             */
             function initVariables() {
                 running = false;
                 animCss = options.vertical ? "top" : "left";
@@ -84,6 +96,10 @@
                 calculatedTo = options.start;
             }
 
+            /**
+             * Gives the carousel elements some default styles so that they align well into a carousel format.
+             * This method will not give any themed styles, just the bare minimum necessary to make the carousel work
+             */
             function initStyles() {
                 div.css("visibility", "visible");   // If the div was set to hidden in CSS, make it visible now
 
@@ -107,12 +123,22 @@
                     left: "0px"
                 });
 
-                // For a non-circular carousel, if the start is 0 and btnPrev is supplied, disable the prev button
-                if(!options.circular && options.btnPrev && options.start == 0) {
-                    $(options.btnPrev).addClass("disabled");
+                calculatedTo = options.start;
+
+                // For a non-circular carousel, disable or enable the nav buttons
+                if(!options.circular) {
+                    disableOrEnableButtons();
                 }
+
+                // Highlight the GO buttons immediately after carousel initialization
+                highlightGoButtons();
+
             }
 
+            /**
+             * Sets the size of various carousel elements based on the given user inputs like width/height
+             * of the carousel element.
+             */
             function initSizes() {
 
                 liSize = options.vertical ?         // Full li size(incl margin)-Used for animation and to set ulSize
@@ -141,6 +167,9 @@
 
             }
 
+            /**
+             * Attach event handlers to the carousel elements based on options
+             */
             function attachEventHandlers() {
                 if(options.btnPrev) {
                     $(options.btnPrev).click(function() {
@@ -175,16 +204,28 @@
                 }
             }
 
+            /**
+             * Sets up auto-scroll
+             */
             function setupAutoScroll() {
                 autoTimeout = setTimeout(function() {
                     go(calculatedTo + options.scroll);
                 }, options.auto);
             }
 
+            /**
+             * Returns a list of currently visible items in the carousel
+             * @returns {*}
+             */
             function visibleItems() {
                 return li.slice(calculatedTo).slice(0,numVisible);
             }
 
+            /**
+             * For a circular carousel, we need to simulate the infinite mode.
+             * This method adjusts the indexes of the carousel based on the current index for infinite mode.
+             * @param to
+             */
             function adjustOobForCircular(to) {
                 var newPosition;
 
@@ -207,6 +248,15 @@
                 }
             }
 
+            /**
+             * For a non-circular carousel, this method
+             *  adjusts the calculatedTo to 0 if the carousel is at the first element.
+             *  adjusts calculatedTo to a correct value when the carousel is going towards the last element.
+             * The second point is a bit more complicated because, based on a combination of scroll, visible and
+             * the total number of elements in the carousel the carousel will need to adjust its calculatedTo so that
+             * the last element is made visible regardless of edge cases
+             * @param to
+             */
             function adjustOobForNonCircular(to) {
                 // If user clicks "prev" and tries to go before the first element, reset it to first element.
                 if(to < 0) {
@@ -224,21 +274,52 @@
                     "Num Visible: " + numVisible);
             }
 
+            /**
+             * Enable or disable buttons in non-circular mode.
+             */
             function disableOrEnableButtons() {
-                $(options.btnPrev + "," + options.btnNext).removeClass("disabled");
+                $(options.btnPrev + "," + options.btnNext).removeClass(options.disabledClass);
                 $( (calculatedTo-options.scroll<0 && options.btnPrev)
-                    ||
-                    (calculatedTo+options.scroll > itemLength-numVisible && options.btnNext)
-                    ||
-                    []
-                ).addClass("disabled");
+                        ||
+                   (calculatedTo+options.scroll > itemLength-numVisible && options.btnNext)
+                        ||
+                   []
+                ).addClass(options.disabledClass);
             }
 
+            /**
+             * Highlight or un-highlight GO buttons based on the current item being displayed in the carousel.
+             * In case of circular: true mode, we have some calculations to do, but in case of circular:false mode,
+             * the calculatedTo variable is the index of the GO button to highlight
+             */
+            function highlightGoButtons() {
+                if(options.btnGo) {         // If GO buttons have been provided, only then get into highlighting mode
+
+                    var buttonIndex = calculatedTo;
+                    $(options.btnGo.join(", ")).removeClass(options.highlightClass);
+
+                    if(options.circular) {  // If Circular, then we have some calculations to make, none otherwise
+                        if(calculatedTo < numVisible) {
+                            buttonIndex = calculatedTo + initialItemLength;
+                        } else if(calculatedTo >= (initialItemLength + numVisible)) {
+                            buttonIndex = calculatedTo - initialItemLength
+                        }
+                        buttonIndex -= numVisible;
+                    }
+
+                    $(options.btnGo[buttonIndex]).addClass(options.highlightClass);
+                }
+            }
+
+            /**
+             * Perform animation to move item from one position to another
+             * @param animationOptions
+             */
             function animateToPosition(animationOptions) {
                 running = true;
 
                 ul.animate(
-                    animCss == "left" ?
+                        animCss == "left" ?
                     { left: -(calculatedTo*liSize) } :
                     { top: -(calculatedTo*liSize) },
 
@@ -252,23 +333,26 @@
     };
 
     $.fn.jCarouselLite.options = {
-        btnPrev: null,              // CSS Selector for the previous button
-        btnNext: null,              // CSS Selector for the next button
-        btnGo: null,                // CSS Selector for the go button
-        mouseWheel: false,          // Set "true" if you want the carousel scrolled using mouse wheel
-        auto: null,                 // Set to a numeric value (800) in millis. Time period between auto scrolls
+        btnPrev: null,                  // CSS Selector for the previous button
+        btnNext: null,                  // CSS Selector for the next button
+        btnGo: null,                    // CSS Selector for the go button
+        mouseWheel: false,              // Set "true" if you want the carousel scrolled using mouse wheel
+        auto: null,                     // Set to a numeric value (800) in millis. Time period between auto scrolls
 
-        speed: 200,                 // Set to a numeric value in millis. Speed of scroll
-        easing: null,               // Set to easing (bounceout) to specify the animation easing
+        speed: 200,                     // Set to a numeric value in millis. Speed of scroll
+        easing: null,                   // Set to easing (bounceout) to specify the animation easing
 
-        vertical: false,            // Set to "true" to make the carousel scroll vertically
-        circular: true,             // Set to "true" to make it an infinite carousel
-        visible: 3,                 // Set to a numeric value to specify the number of visible elements at a time
-        start: 0,                   // Set to a numeric value to specify which item to start from
-        scroll: 1,                  // Set to a numeric value to specify how many items to scroll for one scroll event
+        vertical: false,                // Set to "true" to make the carousel scroll vertically
+        circular: true,                 // Set to "true" to make it an infinite carousel
+        visible: 3,                     // Set to a numeric value to specify the number of visible elements at a time
+        start: 0,                       // Set to a numeric value to specify which item to start from
+        scroll: 1,                      // Set to a numeric value to specify how many items to scroll for one scroll event
 
-        beforeStart: null,          // Set to a function to receive a callback before every scroll start
-        afterEnd: null              // Set to a function to receive a callback after every scroll end
+        disabledClass: "disabled",      // Class for navigation buttons in disabled mode. For non-circular mode
+        highlightClass: "highlight",    // Class for highlighting GO buttons when the corresponding item is displayed
+
+        beforeStart: null,              // Set to a function to receive a callback before every scroll start
+        afterEnd: null                  // Set to a function to receive a callback after every scroll end
     };
 
 })(jQuery);
