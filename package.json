@@ -2,7 +2,7 @@
     "name": "jquery.jcarousellite",
     "title": "jCarouselLite",
     "description": "A light weight carousel plugin for jquery. This is the original jCarouselLite.",
-    "version": "1.1",
+    "version": "1.1.0",
     "author": {
         "name": "Ganeshji Marwaha",
         "url": "http://www.gmarwaha.com/"
@@ -20,7 +20,8 @@
     },
     "devDependencies": {
         "grunt": "^0.4.5",
-        "grunt-contrib-uglify": "^0.6.0"
+        "grunt-contrib-uglify": "^0.6.0",
+        "grunt-contrib-compress": "^0.12.0"
     },
     "licenses": [
         {

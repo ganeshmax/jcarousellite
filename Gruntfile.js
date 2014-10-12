@@ -27,11 +27,28 @@ module.exports = function(grunt) {
                     drop_console: true
                 }
             }
+        },
+
+        compress: {
+            main: {
+                options: {
+                    archive: 'jcarousellite-demo.zip'
+                },
+                files: [{
+                    expand: true,   // Set this to enable CWD below
+                    cwd: 'demo/',   // Change directory to demo/
+                    src: ['**/*'],  // Take all files and folders and sub-folders from the CWD
+                    dest: '/'       // Create ZIP file in /
+                }]
+            }
         }
 
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+
     grunt.registerTask('build', ['uglify']);
+    grunt.registerTask('demo', ['compress']);
 };
 
