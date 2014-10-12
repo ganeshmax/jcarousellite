@@ -29,13 +29,14 @@
 
         margin: 10px 10px 10px 0;
         border: 1px solid #808080;
+        border-radius: 5px;
         line-height: normal;
         background-color: #fff;
         padding: 10px;
     }
 
 /* Styles for PREV and NEXT anchor buttons */
-#jcl-demo a.prev, #jcl-demo a.next {
+#jcl-demo a.prev, #jcl-demo a.next, #jcl-demo a.go {
     display: block;
     width: 26px;
     height: 30px;
@@ -58,7 +59,7 @@
         margin: 50px 0 0 -5px;
         text-indent: 10px;
     }
-        #jcl-demo a.prev:hover, #jcl-demo a.next:hover {
+        #jcl-demo a.prev:hover, #jcl-demo a.next:hover, #jcl-demo a.go:hover {
             background-color: #666666;
         }
 
