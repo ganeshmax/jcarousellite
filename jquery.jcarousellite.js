@@ -71,7 +71,7 @@
                 sizeCss = options.vertical ? "height" : "width";
                 ul = div.find(">ul");
                 initialLi = ul.find(">li");
-                initialItemLength = initialLi.size();
+                initialItemLength = initialLi.length;
 
                 // To avoid a scenario where number of items is just 1 and visible is 3 for example.
                 numVisible = initialItemLength < options.visible ? initialItemLength : options.visible;
@@ -87,7 +87,7 @@
                 }
 
                 li = $("li", ul);
-                itemLength = li.size();
+                itemLength = li.length;
                 calculatedTo = options.start;
             }
 
