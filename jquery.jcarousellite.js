@@ -75,6 +75,10 @@
 
                 // To avoid a scenario where number of items is just 1 and visible is 3 for example.
                 numVisible = initialItemLength < options.visible ? initialItemLength : options.visible;
+                // If the data items length is no bigger than visible value, then attr options.auto to false.
+                if(options.intelligentAuto){
+                    options.auto = initialItemLength < options.visible ? false : options.auto;
+                }
 
                 if(options.circular) {
                     var $lastItemSet = initialLi.slice(initialItemLength-numVisible).clone();
@@ -264,6 +268,7 @@
         btnGo: null,                // CSS Selector for the go button
         mouseWheel: false,          // Set "true" if you want the carousel scrolled using mouse wheel
         auto: null,                 // Set to a numeric value (800) in millis. Time period between auto scrolls
+        intelligentAuto: null,      // Set to stop auto scrolls when data items length is less than visible value. 中文(Chinese):更智能的自动化滚动控制: 当数据中条目数量小于可见(visible)属性的数值时,不进行自动滚动(即将auto属性恢复为false)。
 
         speed: 200,                 // Set to a numeric value in millis. Speed of scroll
         easing: null,               // Set to easing (bounceout) to specify the animation easing
