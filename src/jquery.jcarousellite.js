@@ -10,6 +10,7 @@
         return this.each(function() {   // Returns the element collection. Chainable.
 
             var running,
+                isHovered = false,
                 animCss, sizeCss,
                 div = $(this), ul, initialLi, li,
                 liSize, ulSize, divSize,
@@ -20,6 +21,14 @@
             initSizes();                        // Set appropriate sizes for the carousel div, ul and li
             attachEventHandlers();              // Attach event handlers for carousel to respond
 
+            $(this).hover(function() {
+                isHovered = !isHovered;
+
+                if (!isHovered && options.auto) {
+                    setupAutoScroll();
+                }
+            });
+
             /**
              * Navigates the carousel to an element at "to" index
              * In the process, it adjusts the carousel based on whether it circular or not, hightlights the go buttons,
@@ -28,7 +37,7 @@
              * @returns {boolean}
              */
             function go(to) {
-                if(!running) {
+                if(!isHovered && !running) {
                     clearTimeout(autoTimeout);  // Prevents multiple clicks while auto-scrolling - edge case
                     calculatedTo = to;
 
